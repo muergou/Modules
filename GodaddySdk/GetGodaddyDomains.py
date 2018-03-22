@@ -23,44 +23,43 @@ def GetDomains():
     return  domains_list
 
 def GetDomainDetails():
-    domains_list = GetDomains()
+    domainslist = GetDomains()
     domainsinfo = []
-    for i in range(len(domains_list)):
+    for i in range(len(domainslist)):
         domaininfo = {}
-        sso_key = "sso-key " + apikey['key'] +":"+ apikey['secret']
-        url = "https://api.godaddy.com/v1/domains/%s" % domains_list[i]
-        #print(url)
-        headers = {'User-Agent' :'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',"Authorization": "%s" % sso_key }
+        ssokey = "sso-key " + apikey['key'] +":"+ apikey['secret']
+        url = "https://api.godaddy.com/v1/domains/%s" % domainslist[i]
+        headers = {'User-Agent' :'Mozilla/5.0 (Windows; U; Windows NT 6.1; en-US; rv:1.9.1.6) Gecko/20091201 Firefox/3.5.6',"Authorization": "%s" % ssokey }
         data = GetWebContent(url,headers)
-        domain_detail = json.loads(data)
-        if domain_detail['status'] == 'CANCELLED':
+        domaindetail = json.loads(data)
+        if domaindetail['status'] == 'CANCELLED':
             continue
         else:
-            domain_name = domain_detail['domain']
-            created_time = domain_detail['createdAt']
-            end_time = domain_detail['expires']
+            domainname = domaindetail['domain']
+            createdtime = domaindetail['createdAt']
+            endtime = domaindetail['expires']
             try:
-                dead_time = domain_detail['renewDeadline']
+                deadtime = domaindetail['renewDeadline']
             except:
-                dead_time = "none"
+                deadtime = "none"
             try:
-                if "CLOUDFLARE" in domain_detail['nameServers'][0].upper():
-                    name_server = "cloudflare"
-                elif "ffdns" in domain_detail['nameServers'][0].lower():
-                    name_server = "cloudxns"
-                elif "maff" or "alidns" in domain_detail['nameServers'][0].lower():
-                    name_server = "aliyun"
-                elif "xz.com" in domain_detail['nameServers'][0].lower():
-                    name_server = "xz"
+                if "CLOUDFLARE" in domaindetail['nameServers'][0].upper():
+                    nameserver = "cloudflare"
+                elif "ffdns" in domaindetail['nameServers'][0].lower():
+                    nameserver = "cloudxns"
+                elif "maff" or "alidns" in domaindetail['nameServers'][0].lower():
+                    nameserver = "aliyun"
+                elif "xz.com" in domaindetail['nameServers'][0].lower():
+                    nameserver = "xz"
                 else :
-                    name_server = domain_detail['nameServers'][0]
+                    nameserver = domaindetail['nameServers'][0]
             except:
-                name_server = "none"
-        domaininfo.setdefault("domain",domain_name)
-        domaininfo.setdefault("create",created_time)
-        domaininfo.setdefault("end",end_time)
-        domaininfo.setdefault("dead",dead_time)
-        domaininfo.setdefault("dns",name_server)
+                nameserver = "none"
+        domaininfo.setdefault("domain",domainname)
+        domaininfo.setdefault("create",createdtime)
+        domaininfo.setdefault("end",endtime)
+        domaininfo.setdefault("dead",deadtime)
+        domaininfo.setdefault("dns",nameserver)
         domainsinfo.append(domaininfo)
 
     print domainsinfo
