@@ -8,7 +8,7 @@ import sys
 sys.path.append('..')
 from Config import  accesskey
 import json
-from old import DescribeDomains
+from AliSdk.DNS import DescribeDomains
 
 
 def ListDnsRecordPer(domain):
@@ -24,10 +24,9 @@ def ListDnsRecord():
     domains = DescribeDomains.DescribeDomains()
     print(domains)
     for i in xrange(len(domains)):
-        domain = domains[i].encode('utf-8')
-        list = ListDnsRecordPer(domain)
-        if list['TotalCount'] != 0:
-            print list['DomainRecords']['Record']
+        dnsrecord = ListDnsRecordPer(domains[i])
+        print dnsrecord
+
 
 if __name__ == '__main__':
     ListDnsRecord()

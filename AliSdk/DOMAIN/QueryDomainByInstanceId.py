@@ -36,9 +36,9 @@ def insertintosql():
         else:
             nameserver = domaindetail['DnsList']['Dns'][1]
 
-        sql = '''INSERT INTO domain_name (domain,domain_factory,start_time,end_time, dns_factory)\
+        sql = '''INSERT INTO domain_name (domain,domain_factory,start_time,end_time, dns_factory,warn)\
 VALUES \
-("%s","aliyun","%s","%s","%s"); ''' % (domaindetail['DomainName'],domaindetail['RegistrationDate'],domaindetail['ExpirationDate'],nameserver)
+("%s","aliyun","%s","%s","%s",1); ''' % (domaindetail['DomainName'],domaindetail['RegistrationDate'],domaindetail['ExpirationDate'],nameserver)
 
         DbOperate.DbOperate(sql)
 

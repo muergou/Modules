@@ -68,9 +68,9 @@ def GetDomainDetails():
 def InsertSql():
     domainsinfo = GetDomainDetails()
     for i in xrange(len(domainsinfo)):
-        sql = '''INSERT INTO domain_name (domain,domain_factory,start_time,end_time, dns_factory,dead_time)\
+        sql = '''INSERT INTO domain_name (domain,domain_factory,start_time,end_time, dns_factory,dead_time,warn)\
     VALUES \
-    ("%s","Godaddy","%s","%s","%s","%s"); '''%(domainsinfo[i]['domain'],domainsinfo[i]['create'],domainsinfo[i]['end'],domainsinfo[i]['dns'],domainsinfo[i]['dead'])
+    ("%s","Godaddy","%s","%s","%s","%s",1); '''%(domainsinfo[i]['domain'],domainsinfo[i]['create'],domainsinfo[i]['end'],domainsinfo[i]['dns'],domainsinfo[i]['dead'])
 
         #print sql
         DbOperate.DbOperate(sql)

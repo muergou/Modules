@@ -16,12 +16,12 @@ def DescribeDomains():
     request.set_accept_format('json')
     response = clt.do_action_with_exception(request)
     response = json.loads(response)
-    print response['Domains']['Domain']
+    #print response['Domains']['Domain']
     domains = []
     for i in xrange(len(response['Domains']['Domain'])):
-        #domains.append(response['Domains']['Domain'][i]['DomainName'])
-        print response['Domains']['Domain'][i]
-
+        domains.append(response['Domains']['Domain'][i]['DomainName'])
+    #print domains
+    return domains
 
 if __name__ == '__main__':
     DescribeDomains()
