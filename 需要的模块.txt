@@ -6,3 +6,4 @@ aliyun-python-sdk-core
 aliyun-python-sdk-ecs
 aliyun-python-sdk-cdn
 aliyun-python-sdk-alidns
+aliyun-python-sdk-domain

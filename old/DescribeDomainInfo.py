@@ -6,7 +6,7 @@ import sys
 sys.path.append('..')
 from Config import accesskey
 from aliyunsdkalidns.request.v20150109 import DescribeDomainInfoRequest
-import DescribeDomains
+import old.DescribeDomains
 import json
 
 
@@ -20,7 +20,7 @@ def DescribeDomainInfo(domain):
     return response
 
 def GetAllDomainInfo():
-    domains = DescribeDomains.DescribeDomains()
+    domains = old.DescribeDomains.DescribeDomains()
     alldomaininfo = []
     for i in xrange(len(domains)):
         domainsinfo = DescribeDomainInfo(domains[i])

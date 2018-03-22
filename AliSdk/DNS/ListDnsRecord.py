@@ -8,7 +8,7 @@ import sys
 sys.path.append('..')
 from Config import  accesskey
 import json
-from AliSdk.DOMAIN import DescribeDomains
+from old import DescribeDomains
 
 
 def ListDnsRecordPer(domain):
