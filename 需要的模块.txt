@@ -1,0 +1,8 @@
+MySQL-DB
+psutil
+restclient
+httplib2
+aliyun-python-sdk-core
+aliyun-python-sdk-ecs
+aliyun-python-sdk-cdn
+aliyun-python-sdk-alidns
