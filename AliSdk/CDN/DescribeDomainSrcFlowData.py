@@ -4,7 +4,7 @@
 from aliyunsdkcore import client
 from aliyunsdkcdn.request.v20141111 import DescribeDomainSrcFlowDataRequest
 import datetime
-from AliSdk.config import accesskey
+from Config import accesskey
 import json
 from Tools import NumFormat
 

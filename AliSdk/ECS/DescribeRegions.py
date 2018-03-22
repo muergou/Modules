@@ -4,7 +4,7 @@
 
 from aliyunsdkcore import client
 from aliyunsdkecs.request.v20140526 import DescribeRegionsRequest
-from AliSdk.config import accesskey
+from Config import accesskey
 import json
 
 

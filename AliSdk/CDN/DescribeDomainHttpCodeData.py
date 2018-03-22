@@ -4,7 +4,7 @@
 from aliyunsdkcore import client
 from aliyunsdkcdn.request.v20141111 import DescribeDomainHttpCodeDataRequest
 import datetime
-from AliSdk.config import accesskey
+from Config import accesskey
 
 def DescribeDomainHttpCodeData(domain):
     StartDate = datetime.date.today() - datetime.timedelta(days=2)

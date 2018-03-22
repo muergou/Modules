@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from aliyunsdkcore import client
-from AliSdk.config import accesskey
+from Config import accesskey
 from aliyunsdkcdn.request.v20141111 import RefreshObjectCachesRequest
 
 def RefreshAliCache(domain):
