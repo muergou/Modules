@@ -4,7 +4,7 @@
 from aliyunsdkcore import client
 from aliyunsdkdomain.request.v20180129 import QueryDomainByInstanceIdRequest
 import QueryDomainList
-import sys,json
+import sys,json,time
 sys.path.append('..')
 from Config import  accesskey
 from Tools import DbOperate
@@ -23,7 +23,8 @@ def insertintosql():
     domaininstanceidlist = QueryDomainList.QueryDomainInstanceIdList()
     for i in xrange(len(domaininstanceidlist)):
         domaindetail = json.loads(QueryDomainByInstanceId(domaininstanceidlist[i]))
-        #print domaindetail['ExpirationDate'],domaindetail['RegistrationDate'],domaindetail['DomainName'],domaindetail['DnsList']['Dns'][1]
+        starttime = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.strptime(domaindetail['ExpirationDate'], "%Y-%m-%d %H:%M:%S"))
+        endtime = time.strftime("%Y-%m-%dT%H:%M:%SZ", time.strptime(domaindetail['RegistrationDate'], "%Y-%m-%d %H:%M:%S"))
 
         if "cloudflare" in domaindetail['DnsList']['Dns'][1].lower():
             nameserver = "cloudflare"
@@ -38,7 +39,7 @@ def insertintosql():
 
         sql = '''INSERT INTO domain_name (domain,domain_factory,start_time,end_time, dns_factory,warn)\
 VALUES \
-("%s","aliyun","%s","%s","%s",1); ''' % (domaindetail['DomainName'],domaindetail['RegistrationDate'],domaindetail['ExpirationDate'],nameserver)
+("%s","aliyun","%s","%s","%s",1); ''' % (domaindetail['DomainName'],starttime,endtime,nameserver)
 
         DbOperate.DbOperate(sql)
 

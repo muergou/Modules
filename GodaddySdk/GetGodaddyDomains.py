@@ -62,7 +62,7 @@ def GetDomainDetails():
         domaininfo.setdefault("dns",nameserver)
         domainsinfo.append(domaininfo)
 
-    print domainsinfo
+    #print domainsinfo
     return domainsinfo
 
 def InsertSql():
