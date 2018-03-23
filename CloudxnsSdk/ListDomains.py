@@ -29,12 +29,12 @@ def GetDomainRecord():
         print domainlist[i]['domain']
         domainid =  domainlist[i]['id']
         domainrecord = json.loads(api.record_list(domainid))
-        print(domainrecord)
-        '''try:
+        #print(domainrecord)
+        try:
             for j in xrange(len(domainrecord['data'])):
-                print domainrecord['data'][i]['value'],domainrecord['data'][i]['host'],domainrecord['data'][i]['type']
+                print domainrecord['data'][j]['value'],domainrecord['data'][j]['host'],domainrecord['data'][j]['type']
         except:
-            print("no data")'''
+            print("no data")
 
 
 
