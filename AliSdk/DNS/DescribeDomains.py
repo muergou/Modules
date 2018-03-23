@@ -7,6 +7,7 @@ from aliyunsdkalidns.request.v20150109 import DescribeDomainsRequest
 import sys,json
 sys.path.append('..')
 from Config import  accesskey
+import DescribeDomainWhoisInfo
 
 
 
@@ -19,8 +20,13 @@ def DescribeDomains():
     #print response['Domains']['Domain']
     domains = []
     for i in xrange(len(response['Domains']['Domain'])):
-        domains.append(response['Domains']['Domain'][i]['DomainName'])
-    #print domains
+        alidomain = DescribeDomainWhoisInfo.DescribeDomainWhoisInfo(response['Domains']['Domain'][i]['DomainName'])
+        if alidomain == 1:
+            domains.append(response['Domains']['Domain'][i]['DomainName'])
+        else:
+            continue
+
+    print domains
     return domains
 
 if __name__ == '__main__':
